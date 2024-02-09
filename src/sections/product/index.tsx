@@ -5,20 +5,10 @@ import { _products } from "./_data";
 
 export default function Products () {
 
-    const items = [
-        <div key="1">Item 1</div>,
-        <div key="2">Item 2</div>,
-        <div key="3">Item 3</div>,
-        <div key="3">Item 3</div>,
-        <div key="3">Item 3</div>,
-        <div key="3">Item 3</div>,
-        <div key="3">Item 3</div>,
-      ];
-
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:grid-cols-3 gap-1">
         {_products.map((product, index) => (
-          <div key={index} className=" flex ">
+          <div key={index} className=" flex border rounded-none border-muted ">
             <img
                 src={product.url}
                 alt=""
