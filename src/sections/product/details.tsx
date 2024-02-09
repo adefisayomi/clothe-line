@@ -54,7 +54,7 @@ function MoreInfo () {
     )
 }
 
-function AddToCart () {
+export function AddToCart () {
 
     const [quantity, setQuantity] = useState<number>(0)
     const increaseQuantity = () => setQuantity(prev => prev + 1)

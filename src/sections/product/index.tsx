@@ -8,6 +8,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import { useState } from "react";
+import Link from "next/link";
+import { AddToCart } from "./details";
 
 
 
@@ -34,8 +36,10 @@ export function Product () {
     >
         <CarouselContent>
           {_products.map((product, index) => (
-            <CarouselItem key={index} className="flex flex-col w-full bg-purple-600 p-0">
+            <CarouselItem key={index} className="flex flex-col w-full p-0">
+                <Link href={`/shopping/${product.id}`}>
                 <img src={product.url} alt="" className="w-full h-full object-cover" />
+                </Link>
             </CarouselItem>
           ))}
         </CarouselContent>
@@ -51,6 +55,13 @@ export function Product () {
           <div className="absolute top-0 left-0 text-xs p-2 bg-background w-fit">
             <h2>$2,000</h2>
           </div>
+
+          {
+            hovering &&
+            <div className="absolute bottom-0 left-0 p-2 bg-background">
+                <AddToCart />
+            </div>
+          }
       </Carousel>
     )
   }
