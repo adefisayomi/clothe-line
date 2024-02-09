@@ -1,33 +1,56 @@
 import useResponsive from "@/src/hooks/useResponsive"
 import { _products } from "./_data";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import { useState } from "react";
 
 
 
 export default function Products () {
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:grid-cols-3 gap-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-1">
         {_products.map((product, index) => (
-          <div key={index} className=" flex border rounded-none border-muted ">
-            <img
-                src={product.url}
-                alt=""
-                className="object-cover"
-            />
-          </div>
+          <Product key={index} />
         ))}
       </div>
     )
 }
 
-
 export function Product () {
 
-    const isDesktop = useResponsive() === 'desktop'
+    const [hovering, setHovering] = useState(false)
 
     return (
-        <div className={`w-full h-screen ${isDesktop ? 'max-h-[80vh]' : 'max-h-[80vh]'} bg-black border rounded-none border-muted h-auto max-w-full`}>
-            <img src="https://images.pexels.com/photos/1964581/pexels-photo-1964581.jpeg?cs=srgb&dl=pexels-atef-khaled-1964581.jpg&fm=jpg" alt="" className="object-cover w-full h-full" />
-        </div>
+      <Carousel 
+        className="w-full border border-muted relative"
+        onMouseEnter={() => setHovering(true)}
+        onMouseLeave={() => setHovering(false)}
+    >
+        <CarouselContent>
+          {_products.map((product, index) => (
+            <CarouselItem key={index} className="flex flex-col w-full bg-purple-600 p-0">
+                <img src={product.url} alt="" className="w-full h-full object-cover" />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        {
+            hovering && (
+                <>
+                <CarouselNext />
+                <CarouselPrevious />
+                </>
+            )
+          }
+
+          <div className="absolute top-0 left-0 text-xs p-2 bg-background w-fit">
+            <h2>$2,000</h2>
+          </div>
+      </Carousel>
     )
-}
+  }
