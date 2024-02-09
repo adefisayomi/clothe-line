@@ -1,9 +1,11 @@
 import TextMaxLine from "@/components/TextMaxLine"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import {Check} from 'lucide-react'
+import {Minus, Plus} from 'lucide-react'
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import {useState } from "react"
+import {ReactNode, useState } from "react"
+import InfoSidebar from "@/components/InfoSidebar"
+import { Help, Payment, Shipping } from "./ProductHelp"
 
 
 export default function ProductDetails () {
@@ -21,20 +23,62 @@ export default function ProductDetails () {
 
 
 function MoreInfo () {
+    const [open, setOpen] = useState(false)
+    const [info, setInfo] = useState<{header: string, content: any}>({header: '', content: null})
+    const handleShowInfo =(header: string, content: ReactNode) => {
+        setOpen(true)
+        setInfo({header, content})
+    }
+
+    const infoList= [
+        {header: 'SHIPPING & RETURNS', component: <Shipping />},
+        {header: 'PAYMENT METHODS', component: <Payment />},
+        {header: 'HELP AND CONTACT', component: <Help />},
+    ]
+
     return (
-        <ul className="flex flex-col items-start gap-1">
-            <li className="hover:underline text-xs"><Link href='#'>SHIPPING & RETURNS</Link></li>
-            <li className="hover:underline text-xs"><Link href='#'>PAYMENT METHODS</Link></li>
-            <li className="hover:underline text-xs"><Link href='#'>HELP AND CONTACT</Link></li>
+       <div>
+         <ul className="flex flex-col items-start gap-1">
+            {
+                infoList.map((_, index) => (
+                    <li key={index} className="hover:underline text-xs cursor-pointer"
+                        onClick={() => handleShowInfo(_.header, _.component)}
+                    >
+                        {_.header}
+                    </li>
+                ))
+            }
         </ul>
+            <InfoSidebar isOpen={open} onClose={() => setOpen(false)} header={info.header} content={info.content} />
+       </div>
     )
 }
 
 function AddToCart () {
 
+    const [quantity, setQuantity] = useState<number>(0)
+    const increaseQuantity = () => setQuantity(prev => prev + 1)
+    const reduceQuantity = () => setQuantity(prev => prev > 0 ? prev - 1 : prev)
+    const handleQuantityChange = (e: any) => {
+        if (!isNaN(e.target.value)) {
+            const num = Number(e.target.value)
+            setQuantity(num)
+        }
+    }
+
     return (
-        <div className="w-full ">
-            <Button size='sm' className="w-full max-w-[12rem] h-fit py-1.5 uppercase text-xs rounded-none">
+        <div className="w-full flex items-center gap-2">
+            <div className="relative flex items-center max-w-[8rem] border border-muted px-1">
+                <button className="p-2" onClick={reduceQuantity}>
+                    <Minus className="w-4 h-4"/>
+                </button>
+                <input onChange={handleQuantityChange} type="text" className="w-12 h-8 outline-none text-xs text-center p-2" value={quantity} placeholder="0" />
+                <button className="p-2" onClick={increaseQuantity}>
+                    <Plus className="w-4 h-4"/>
+                </button>
+            </div>
+
+            <Button size='sm' loading className="w-full h-8 max-w-[12rem] py-1.5 uppercase text-xs rounded-none">
                 Add to cart
             </Button>
         </div>
@@ -53,8 +97,8 @@ function Dscription () {
                     $2,000
                 </h2>
             </div>
-            <TextMaxLine className="text-xs" line={4}>
-               ssumenda hic expedita suscipi Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias, ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro nihil iste officiis exercitationem mollitia asperiores nostrum laboriosam pariatur tempora expedita doloribus distinctio cumque dignissimos voluptates accusamus necessitatibus, totam eveniet esse quod ad voluptatem ullam consequuntur. Consectetur nihil blanditiis voluptate deleniti iste quis assumenda eaque odio cumque? Quos iure deleniti consequatur!
+            <TextMaxLine line={3}>
+               <p className="text-xs">ssumenda hic expedita suscipi Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias, ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro nihil iste officiis exercitationem mollitia asperiores nostrum laboriosam pariatur tempora expedita doloribus distinctio cumque dignissimos voluptates accusamus necessitatibus, totam eveniet esse quod ad voluptatem ullam consequuntur. Consectetur nihil blanditiis voluptate deleniti iste quis assumenda eaque odio cumque? Quos iure deleniti consequatur!</p>
             </TextMaxLine>
         </div>
     )

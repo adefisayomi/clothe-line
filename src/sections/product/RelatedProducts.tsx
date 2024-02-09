@@ -16,7 +16,7 @@ export default function RelatedProducts ({products}: {products: {id: string, url
         <Carousel className="w-full">
             <CarouselContent className="-ml-1">
                 {products.length > 0 && products.map((product, index) => (
-                <CarouselItem key={index} className="pl-1 lg:basis-1/5 md:basis-1/2 sm:basis-[100%]">
+                <CarouselItem key={index} className="pl-1 lg:basis-1/5 md:basis-1/2 basis-[100%]">
                     <div className="p-1">
                     <Link href='#'>
                     <Card className="rounded-none">

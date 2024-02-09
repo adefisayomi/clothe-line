@@ -4,6 +4,8 @@ import { ReactNode } from 'react';
 import { ThemeProvider } from '@/components/themeProvider';
 import '../styles/globals.css'
 import AnimateRoute from '@/components/AnimateRoute';
+import GlobalStateProvider from '@/src/contexts';
+import CustomToast from '@/components/CustomToast';
 
 
 const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
@@ -20,11 +22,14 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
         enableSystem
         disableTransitionOnChange
       >
-        <main className='font-mono'>
-          <AnimateRoute>
-            {getLayout(<Component {...pageProps} />)}
-          </AnimateRoute>
-        </main>
+        <GlobalStateProvider>
+          <main className='font-mono'>
+            <CustomToast />
+            <AnimateRoute>
+              {getLayout(<Component {...pageProps} />)}
+            </AnimateRoute>
+          </main>
+        </GlobalStateProvider>
       </ThemeProvider>
   )
 };

@@ -1,25 +1,25 @@
-import { memo, useState } from "react"
+import { cn } from "@/lib/utils"
+import { useEffect, useState } from "react"
 
-
-
-function TextMaxLine ({children, line=2, label, className}: {children: any, line?: number, label?: string, className?: any}) {
+export default function TextMaxLine ({children, line, className}: {children: string, line?: number, className?: string}) {
 
     const [read, setRead] = useState(false)
     const toggleRead = () => setRead(prev => !prev)
+    const [maxStyle, setMaxStyle] = useState(read ? 'line-clamp-0' : `line-clamp-${line}`)
 
+    useEffect(() => {
+        if (read) setMaxStyle('line-clamp-none')
+        else setMaxStyle(`line-clamp-${line}`)
+    }, [read, line])
+   
     return (
-        <div>
-            {children}
+        <div className="w-full flex flex-wrap gap-1 items-center">
+            <p className={cn("text-xs", className, maxStyle )}>
+                {children}
+            </p>
+            <button onClick={toggleRead} className="bg-none text-xs lowercase font-medium underline">
+                {read ? 'read less' : 'read more'}
+            </button>
         </div>
-        // <div className={`${className} relative`}>
-        // <span className={`line-clamp-${line * (read ? 0 : 1)}`}>
-        //     {children}
-        // </span>
-        // <button className="text-nowrap text-xs underline lowercase absolute right-0 bottom-0 bg-background px-2" onClick={toggleRead}>
-        //     {label || read ? 'read less' : 'read more'}
-        // </button>
-        // </div>
     )
 }
-
-export default memo(TextMaxLine)

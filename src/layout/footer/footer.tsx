@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Icon } from '@iconify/react';
 import TextMaxLine from "@/components/TextMaxLine";
+import FooterNewsLetter from "@/src/sections/newsletter/footerNewsLetter";
 
 
 export default function Footer  () {
@@ -14,14 +15,14 @@ export default function Footer  () {
               <span className="text-sm font-bold tracking-wide  uppercase">Adefisayomi/clace</span>
             </a>
             <div className="mt-6 lg:max-w-sm">
-              <p className="text-xs">
-                <TextMaxLine line={3} className='text-xs'>
+              <TextMaxLine line={3} className='text-xs'>
                 Explore a fusion of bold colors, innovative patterns, and quality craftsmanship that reflects the dynamic essence of modern fashion. From trendy hoodies and sneakers to tailored suits and chic accessories, our diverse collection caters to individuals who embrace their unique style while navigating the diverse landscapes of city life.
-                </TextMaxLine>
-              </p>
-              <p className="mt-4 text-xs">
-                {/*  */}
-              </p>
+              </TextMaxLine>
+              
+              <div className="mt-2">
+                <FooterNewsLetter />
+              </div>
+
             </div>
           </div>
 
@@ -61,6 +62,7 @@ export default function Footer  () {
               Follow us on our socials to be the first to see our latest release.
             </p>
           </div>
+
         </div>
 
         <div className="flex flex-col-reverse justify-between pt-5 pb-10 border-t border-muted lg:flex-row">
