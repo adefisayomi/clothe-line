@@ -98,7 +98,7 @@ function Dscription () {
                 </h2>
             </div>
             <TextMaxLine line={3}>
-               <p className="text-xs">ssumenda hic expedita suscipi Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias, ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro nihil iste officiis exercitationem mollitia asperiores nostrum laboriosam pariatur tempora expedita doloribus distinctio cumque dignissimos voluptates accusamus necessitatibus, totam eveniet esse quod ad voluptatem ullam consequuntur. Consectetur nihil blanditiis voluptate deleniti iste quis assumenda eaque odio cumque? Quos iure deleniti consequatur!</p>
+               ssumenda hic expedita suscipi Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias, ipsum Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro nihil iste officiis exercitationem mollitia asperiores nostrum laboriosam pariatur tempora expedita doloribus distinctio cumque dignissimos voluptates accusamus necessitatibus, totam eveniet esse quod ad voluptatem ullam consequuntur. Consectetur nihil blanditiis voluptate deleniti iste quis assumenda eaque odio cumque? Quos iure deleniti consequatur!
             </TextMaxLine>
         </div>
     )

@@ -18,7 +18,7 @@ export default function CustomToast () {
         <Toaster
           position="top-right"
           richColors
-          theme={theme}
+          theme={theme === 'light' ? 'light' : 'dark'}
           toastOptions={{
             cancelButtonStyle: {
               fontSize: '14px',
