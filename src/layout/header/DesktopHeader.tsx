@@ -1,6 +1,6 @@
 import Logo from "@/components/Logo";
 import UserMenu from "./userMenu/userMenu";
-import Cart from "./userMenu/cart";
+import Cart from "@/src/cart";
 
 
 

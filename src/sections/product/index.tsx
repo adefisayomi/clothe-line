@@ -1,9 +1,37 @@
 import useResponsive from "@/src/hooks/useResponsive"
+import { _products } from "./_data";
 
 
 
+export default function Products () {
 
-export default function Product () {
+    const items = [
+        <div key="1">Item 1</div>,
+        <div key="2">Item 2</div>,
+        <div key="3">Item 3</div>,
+        <div key="3">Item 3</div>,
+        <div key="3">Item 3</div>,
+        <div key="3">Item 3</div>,
+        <div key="3">Item 3</div>,
+      ];
+
+    return (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-1">
+        {_products.map((product, index) => (
+          <div key={index} className=" flex ">
+            <img
+                src={product.url}
+                alt=""
+                className="object-cover"
+            />
+          </div>
+        ))}
+      </div>
+    )
+}
+
+
+export function Product () {
 
     const isDesktop = useResponsive() === 'desktop'
 
