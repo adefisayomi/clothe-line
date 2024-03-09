@@ -18,6 +18,10 @@ const config = {
       },
     },
     extend: {
+      maxWidth: {
+        '8xl': '1400px',
+        '9xl': '1500px',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

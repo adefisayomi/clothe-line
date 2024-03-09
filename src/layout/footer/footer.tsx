@@ -1,13 +1,13 @@
 import Link from "next/link"
 import { Icon } from '@iconify/react';
-import TextMaxLine from "@/components/TextMaxLine";
+import TextMaxLine from "@/src/components/TextMaxLine";
 import FooterNewsLetter from "@/src/sections/newsletter/footerNewsLetter";
 
 
 export default function Footer  () {
 
     return (
-        <div className="p-2 mt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-full border-t border-muted">
+        <div className="px-2 py-3 lg:max-w-9xl mx-auto">
 
         <div className="grid gap-10 row-gap-6 mb-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2">
@@ -16,7 +16,7 @@ export default function Footer  () {
             </Link>
             <div className="mt-6 lg:max-w-sm">
               <TextMaxLine line={3} className='text-xs'>
-                Explore a fusion of bold colors, innovative patterns, and quality craftsmanship that reflects the dynamic essence of modern fashion. From trendy hoodies and sneakers to tailored suits and chic accessories, our diverse collection caters to individuals who embrace their unique style while navigating the diverse landscapes of city life.
+              Explore a fusion of bold colors, innovative patterns, and quality craftsmanship that reflects the dynamic essence of modern fashion. From trendy hoodies and sneakers to tailored suits and chic accessories, our diverse collection caters to individuals who embrace their unique style while navigating the diverse landscapes of city life.
               </TextMaxLine>
               
               <div className="mt-2">

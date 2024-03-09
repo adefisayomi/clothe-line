@@ -2,10 +2,10 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import { useForm } from "react-hook-form"
 import yup from 'yup'
 import { contactUsSchema } from "./formSchema"
-import { Button } from "@/components/ui/button"
-import { FormControl, FormField, FormItem, FormMessage, Form } from "@/components/ui/form"
-import { FloatingInput } from "@/components/ui/floating-input"
-import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@/src/components/ui/button"
+import { FormControl, FormField, FormItem, FormMessage, Form } from "@/src/components/ui/form"
+import { Input } from "@/src/components/ui/input"
+import { Textarea } from "@/src/components/ui/textarea"
 import {
     Select,
     SelectContent,
@@ -14,7 +14,7 @@ import {
     SelectLabel,
     SelectTrigger,
     SelectValue,
-  } from "@/components/ui/select"
+  } from "@/src/components/ui/select"
 
 
 
@@ -36,14 +36,14 @@ export default function ContactUsForm () {
             <Form {...form}>
             <form  onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
 
-                <div className="flex items-center gap-2 w-full ">
+                <div className="flex flex-col md:flex-row items-center gap-2 w-full ">
                     <FormField
                         control={form.control}
                         name="name"
                         render={({ field }) => (
                             <FormItem className="w-full">
                             <FormControl>
-                                <FloatingInput type="text" label="Full Name" {...field}/>
+                                <Input type="text" placeholder="Full Name" {...field}/>
                             </FormControl>
                             <FormMessage />
                             </FormItem>
@@ -55,7 +55,7 @@ export default function ContactUsForm () {
                         render={({ field }) => (
                             <FormItem className="w-full">
                             <FormControl>
-                                <FloatingInput type="email" label="Email Address" {...field}/>
+                                <Input type="email" placeholder="Email Address" {...field}/>
                             </FormControl>
                             <FormMessage />
                             </FormItem>
@@ -63,14 +63,14 @@ export default function ContactUsForm () {
                     />
                 </div>
 
-                <div className="flex items-center gap-2 w-full ">
+                <div className="flex flex-col md:flex-row items-center gap-2 w-full ">
                     <FormField
                         control={form.control}
                         name="phone"
                         render={({ field }) => (
                             <FormItem className="w-full">
                             <FormControl>
-                                <FloatingInput type="tel" label="Phone Number" {...field}/>
+                                <Input type="tel" placeholder="Phone Number" {...field}/>
                             </FormControl>
                             <FormMessage />
                             </FormItem>
@@ -117,7 +117,7 @@ export default function ContactUsForm () {
                     )}
                 />
 
-                <Button className="w-full max-w-[12rem] h-fit py-1.5 uppercase text-xs rounded-none">
+                <Button className="md:max-w-[50%]" size='sm'>
                     send message
                 </Button>
             </form>
