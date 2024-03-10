@@ -17,6 +17,7 @@ export default function Checkout () {
         setTheme('light')
     }, [])
 
+
     return (
         <div className=" w-full bg-[#E2DBC8] min-h-screen backdrop-blur-3xl relative">
             <Page title="">
@@ -47,3 +48,4 @@ export default function Checkout () {
         </div>
     )
 }
+

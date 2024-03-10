@@ -47,11 +47,12 @@ export default function CheckoutSummary2 () {
                     <h2 className="text-md font-normal">$2,000</h2>
                 </div>
 
-                <Button variant={theme == 'dark' ? 'default' : 'secondary'}  className="flex items-center gap-2 rounded-full w-fit float-end" onClick={() => handlePayWithFlutterwave(config)} >
-                    <span className="text-xs">Pay with</span>
-                    <img src="/flutterwave2.svg" alt="flutterwave-button" 
-                    className="object-contain w-full h-4"
+                <Button size='sm' className="flex items-center gap-2 w-fit float-end" onClick={() => handlePayWithFlutterwave(config)} >
+                    {/* <span className="text-xs">Pay with</span> */}
+                    <img src="https://getdisha.co/wp-content/uploads/2022/08/flutterwave-logo.png" alt="flutterwave-button" 
+                    className="object-cover w-full h-8"
                     />
+                    <span className="text-xs">Pay</span>
                 </Button>
             </div>
 

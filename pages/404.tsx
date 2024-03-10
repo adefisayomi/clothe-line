@@ -26,7 +26,7 @@ export default function Erro404 () {
 
                 <Input placeholder="Search..." className="w-full max-w-5xl p-6 text-sm bg-muted rounded-lg my-4"/>
 
-                <Button className="w-full max-w-xs" variant='outline' onClick={() => router.back()}>
+                <Button className="w-full max-w-xs" variant='ghost' onClick={() => router.back()}>
                     Go Back
                 </Button>
             </div>

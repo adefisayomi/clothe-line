@@ -6,7 +6,6 @@ import GlobalStateProvider from '@/src/contexts';
 import { ThemeProvider } from '@/src/components/themeProvider';
 import CustomToast from '@/src/components/CustomToast';
 import AnimateRoute from '@/src/components/AnimateRoute';
-import { SessionProvider } from "next-auth/react"
 
 
 const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
@@ -17,7 +16,6 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
   const getLayout = Component.getLayout || ((page: ReactNode) => page);
 
   return (
-    <SessionProvider session={session}>
     <ThemeProvider
         attribute="class"
         defaultTheme="light"
@@ -33,7 +31,6 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
           </main>
         </GlobalStateProvider>
       </ThemeProvider>
-      </SessionProvider>
   )
 };
 
