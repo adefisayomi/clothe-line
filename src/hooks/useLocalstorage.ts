@@ -3,17 +3,24 @@ import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 type UseLocalStorageReturnType<T> = [T, Dispatch<SetStateAction<T>>];
 
 export default function useLocalStorage<T>(key: string, defaultValue: T): UseLocalStorageReturnType<T> {
-  // Retrieve the stored value from localStorage or use the default value
-  const storedValue = window.localStorage.getItem(key);
-  const initial = storedValue ? JSON.parse(storedValue) : defaultValue;
+  // Function to retrieve initial state from localStorage or use defaultValue
+  const getInitialValue = (): T => {
+    // If localStorage is not available (e.g., server-side rendering), return defaultValue
+    if (typeof window === 'undefined') return defaultValue;
+    const storedValue = window.localStorage.getItem(key);
+    return storedValue ? JSON.parse(storedValue) : defaultValue;
+  };
 
-  // State to hold the current value
-  const [value, setValue] = useState<T>(initial);
+  // Initialize state with the value retrieved from localStorage or defaultValue
+  const [value, setValue] = useState<T>(getInitialValue);
 
-  // Update the local storage whenever the value changes
+  // Effect to update localStorage whenever 'value' changes
   useEffect(() => {
-    window.localStorage.setItem(key, JSON.stringify(value));
-  }, [key, value]);
+    // Only execute on the client-side
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem(key, JSON.stringify(value));
+    }
+  }, [key, value]); // Dependency array includes 'key' and 'value'
 
   return [value, setValue];
 }

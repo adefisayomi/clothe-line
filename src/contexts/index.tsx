@@ -4,14 +4,15 @@ import type {User} from 'firebase/auth'
 import { useCartStore } from "./reducers/useCartStore";
 import { getAllCartItems } from "./reducers/actions/cartActions";
 import { ProductInCartTypes } from "@/sanity/schemaTypes/product";
+import useLocalStorage from "../hooks/useLocalstorage";
 
 
 
 type ContextProps = {
-    user: User | null
+    user: User | null;
 }
 
-export const StateContext = createContext({user: null} as ContextProps)
+export const StateContext = createContext({} as ContextProps)
 
 export default function GlobalStateProvider ({children}: {children: ReactNode}) {
 
@@ -25,6 +26,8 @@ export default function GlobalStateProvider ({children}: {children: ReactNode}) 
         }
         setUser(res)
     })
+    // 
+    
 
     return (
         <StateContext.Provider

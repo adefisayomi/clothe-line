@@ -14,7 +14,10 @@ const nextConfig = {
       appId: "1:323117669192:web:24addff32125356988f17d",
       measurementId: "G-0VMR8LPZ3X"
     },
-  }
+  },
+  images: {
+    domains: ['cdn.sanity.io'],
+  },
 };
 
 export default nextConfig;
