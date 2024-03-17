@@ -12,7 +12,7 @@ import ProductCarousel, { ProductCarouselPlaceholder } from "@/src/sections/prod
 import { ProductTypes } from "@/sanity/schemaTypes/product";
 import { QUERY_LIST, SortProps, useSortQueryStore } from "@/src/contexts/reducers/sortQuery";
 import { useResponsive } from "@/src/hooks";
-
+import {Filter, ChevronRight} from 'lucide-react'
 
 
 export default function Sets() {
@@ -41,12 +41,13 @@ export default function Sets() {
 
                     <div className="grid md:grid-cols-2 grid-cols-1 w-full gap-1">
                         <div className="flex items-center gap-1">
-                            <Button size='sm' className="w-[50%] md:w-[150px]">
+                            <Button size='sm' className="w-[150px]">
                                 Filter
+                                <ChevronRight className="w-4 h-4 ml-2" />
                             </Button>
 
                             <DropdownMenu>
-                                <DropdownMenuTrigger asChild className="w-[50%] md:w-fit">
+                                <DropdownMenuTrigger asChild className="w-full md:w-fit">
                                     <Button loading={isLoading} size='sm' className=" uppercase flex items-center">
                                         sort by : {sortQuery.type || 'recommended'} <ChevronDown className="ml-1 w-4 h-4" />
                                     </Button>
