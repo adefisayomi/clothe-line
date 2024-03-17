@@ -62,3 +62,15 @@ const [hovering, setHovering] = React.useState(false)
     </div>
   )
 }
+
+
+export function ProductCarouselPlaceholder () {
+
+    return (
+        <Card className="rounded-none">
+            <CardContent className="flex aspect-[2/3] items-center justify-center p-0">
+            <Skeleton className="w-full h-full rounded-none" />
+            </CardContent>
+        </Card>
+    )
+}

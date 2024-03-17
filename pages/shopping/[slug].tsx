@@ -2,11 +2,9 @@ import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 import { ProductTypes } from "@/sanity/schemaTypes/product";
 import Page from "@/src/components/Page";
-import useCookies from "@/src/hooks/useCookies";
+import { useRecentlyViewedStore } from "@/src/contexts/reducers/useRecentlyViewedStore";
 import Layout from "@/src/layout";
-import RecentlyViewed from "@/src/sections/products/RecentlyViewed";
-import RelatedProducts from "@/src/sections/products/RelatedProducts";
-import { _products } from "@/src/sections/products/_data";
+import RecentlyViewed2 from "@/src/sections/product2/RecentlyViewed2";
 import ProductDetails from "@/src/sections/products/details";
 import { useRouter } from "next/router";
 import React, { ReactNode, useEffect } from "react";
@@ -14,17 +12,13 @@ import React, { ReactNode, useEffect } from "react";
 export default function SingleProduct({ product }: { product: ProductTypes }) {
 
     const router = useRouter()
-    const [recentlyViewed, updateRecentlyViewed] = useCookies<string[]>('recently-viewed', [], 1);
-
+    const updateRecentlyViewed = useRecentlyViewedStore((state) => state.updateRecentlyViewed)
+    const recentlyViewed = useRecentlyViewedStore((state) => state.recentlyViewed)
 
     useEffect(() => {
         const exitingFunction = async () => {
             if (product && product._id && !recentlyViewed.includes(product._id)) {
-                const updatedRecentlyViewed = [...recentlyViewed];
-                updatedRecentlyViewed.unshift(product._id)
-                if (recentlyViewed.length !== updatedRecentlyViewed.length) {
-                  updateRecentlyViewed(updatedRecentlyViewed);
-                }
+                updateRecentlyViewed(product._id)
               }
         };
     
@@ -35,7 +29,6 @@ export default function SingleProduct({ product }: { product: ProductTypes }) {
           router.events.off("routeChangeStart", exitingFunction);
         };
       }, []);
-
 
   return (
     <Page title={`${product.name}`}>
@@ -53,8 +46,7 @@ export default function SingleProduct({ product }: { product: ProductTypes }) {
             <ProductDetails product={product} />
           </div>
         </div>
-        {/* <RelatedProducts /> */}
-        <div className="mt-5"><RecentlyViewed  /></div>
+        <div className="mt-5"><RecentlyViewed2  /></div>
       </div>
     </Page>
   );

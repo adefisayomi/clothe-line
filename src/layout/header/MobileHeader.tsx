@@ -30,12 +30,13 @@ import { NavMenuItems } from "./NavMenu"
   
   export default function MobileHeader () {
 
+
     return (
         <div className="w-full flex items-center p-2 justify-between">
             <div className="flex-1"><Logo /></div>
 
             <div className="w-fit">
-                <UserMenu component={<DropDownComponent />} />
+              <UserMenu component={<DropDownComponent />} />
             </div>
         </div>
     )

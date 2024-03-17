@@ -1,19 +1,25 @@
 import Link from "next/link";
-import { cn } from "../lib/utils";
-import { useRouter } from "next/router";
+import { useResponsive } from "../hooks";
 
 
 
-export default function Logo ({className, onClick}: {className?: any, onClick?: any}) {
+export default function Logo () {
 
-    const router = useRouter()
-    const handleClick = () => onClick || router.push('/')
+    const isDesktop = useResponsive() === 'desktop'
 
     return (
-        <div className="w-fit cursor-pointer" onClick={handleClick}>
-            <h1 className="scroll-m-20 text-2xl md:text-4xl font-extrabold tracking-tight font-poppins">
-                Adefisayomi™<span className="text-lg">/clace</span>
-            </h1>
+        <Link href='/'>
+        <div className="w-fit cursor-pointer">
+            {
+                isDesktop ? 
+                <h1 className="scroll-m-20 text-2xl md:text-4xl font-extrabold tracking-tight font-poppins">
+                    Adefisayomi™<span className="text-lg">/clace</span>
+                </h1> : 
+                <h1 className="scroll-m-20 text-2xl md:text-4xl font-extrabold tracking-tight font-poppins">
+                    clace™
+                </h1>
+            }
         </div>
+        </Link>
     )
 }

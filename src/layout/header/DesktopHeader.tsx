@@ -13,7 +13,6 @@ import React from "react";
 import UserMenu from "./userMenu/userMenu";
 import Routes from "@/src/Routes";
 import { useRouter } from "next/router";
-import { useSettings } from "@/src/hooks";
 import { DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubTrigger } from "@/src/components/ui/dropdown-menu";
 import { LogOut, Settings, SunMoon, User } from "lucide-react";
 import useAuth from "@/src/hooks/useAuth";
@@ -25,8 +24,8 @@ import { NavMenuItems } from "./NavMenu";
 
 export default function DesktopHeader () {
 
-  const {user} = useSettings()
   const router = useRouter()
+  const restrictedRoutes = ['login', 'signup']
 
     return (
         <div className=" flex flex-col items-center ">
@@ -47,18 +46,15 @@ export default function DesktopHeader () {
               {
                 !router.route.includes("checkout") && <Cart />
               }
-              {user ? 
-                <UserMenu component={<DropDownComponent />} /> : 
-                <Button size='sm' variant='outline'onClick={() => router.push(Routes.login)}>
-                    Login
-                </Button>
-              }
+              <UserMenu component={<DropDownComponent />} />
             </div>
             </div>
 
-            <div className="mt-4">
-                <NavigationMenuComponent />
-            </div>
+            {
+              !restrictedRoutes.includes(router.asPath.split('/').pop()!) && <div className="mt-4"> <NavigationMenuComponent /></div>
+            }
+
+            
         </div>
     )
 }

@@ -29,7 +29,7 @@ export default function RecentlyViewed () {
         {"recently viewed"}
       </div>
 
-      <div className="grid md:grid-cols-5 grid-cols-1 gap-2">
+      <div className="grid md:grid-cols-5 grid-cols-1 gap-[2px]">
         {
             data && data.length > 0 && data.map((product: ProductTypes, index: any) => (
                 <NewProductComponent product={product} key={index} />

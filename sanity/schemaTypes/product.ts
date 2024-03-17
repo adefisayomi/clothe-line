@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import { defineType} from 'sanity'
 
 export default defineType({
     name: 'product',
@@ -69,6 +69,23 @@ export default defineType({
         },
         validation: (Rule) => Rule.required(),
       },
+      {
+        name: 'categoryType',
+        title: 'Category Type',
+        type: 'string',
+        options: {
+          list: [
+            { title: 'Men', value: 'men' },
+            { title: 'New In', value: 'new-in' },
+            { title: 'Women', value: 'women' },
+            { title: 'Kids', value: 'kids' },
+            { title: 'Embroidery', value: 'embroidery' },
+            { title: 'Special Items', value: 'special-items' },
+          ],
+          layout: 'radio', // Display as radio buttons
+        },
+        description: 'The type of category.',
+      },
     ],
     preview: {
       select: {
@@ -86,6 +103,7 @@ export default defineType({
     price?: number;
     colors?: string[];
     sizes?: string[];
+    category?: string;
     images?: any[];
     slug?: {
       current: string;
@@ -99,6 +117,7 @@ export default defineType({
     price?: number;
     color?: string;
     size?: string;
+    category?: string;
     image?: string;
     slug?: string;
     quantity?: number;

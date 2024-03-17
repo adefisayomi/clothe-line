@@ -15,19 +15,32 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/src/components/ui/select"
+import axios from 'axios'
+import useAlert from "@/src/hooks/useAlert"
 
 
 
 export default function ContactUsForm () {
 
+    const {setAlert} = useAlert()
     const form = useForm<yup.InferType<typeof contactUsSchema>>({
         resolver: yupResolver(contactUsSchema),
         defaultValues: {email: '', name: '', message: '', reason: '', phone: ''}
       })
 
     // ---
-    function onSubmit(data: yup.InferType<typeof contactUsSchema>) {
-        console.log(data)
+    async function onSubmit(data: yup.InferType<typeof contactUsSchema>) {
+        const payload = {
+            from: data.email,
+            subject: data.reason!,
+            message: `<p>${data.phone}</p> <br/> <p>${data.name}</p> <br/> <p>${data.reason}</p> <br/> <p>${data.message}</p> <br/>`
+        }
+        const res = await axios.post('/api/email', payload)
+        if (!res?.data?.success) {
+            return setAlert(res.data.message, 'error')
+        }
+        setAlert(res.data.message, 'success')
+        return form.reset()
       }
     
 
@@ -82,7 +95,7 @@ export default function ContactUsForm () {
                         render={({ field }) => (
                             <FormItem className="w-full">
                             <FormControl>
-                                <Select>
+                                <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value} name={field.name}>
                                     <SelectTrigger className="w-full">
                                         <SelectValue placeholder="Enquiry reason" />
                                     </SelectTrigger>
@@ -117,7 +130,7 @@ export default function ContactUsForm () {
                     )}
                 />
 
-                <Button className="md:max-w-[50%]" size='sm'>
+                <Button className="md:max-w-[50%]" size='sm' loading={form.formState.isSubmitting} >
                     send message
                 </Button>
             </form>
