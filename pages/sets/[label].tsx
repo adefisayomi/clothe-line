@@ -33,7 +33,7 @@ export default function Sets() {
             <div>
                 <div className="w-full gap-5 flex flex-col items-start sticky top-0 left-0 py-6 bg-background z-10">
                     <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-4xl capitalize">
-                        {`"${router?.query?.label}"`}
+                        {`"${router?.query?.label || '-'}"`}
                     </h1>
 
                     <div className="flex items-center justify-between w-full ">
