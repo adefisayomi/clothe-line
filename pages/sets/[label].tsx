@@ -11,12 +11,14 @@ import { ChevronDown } from "lucide-react";
 import ProductCarousel, { ProductCarouselPlaceholder } from "@/src/sections/product2/ProductCarousel";
 import { ProductTypes } from "@/sanity/schemaTypes/product";
 import { QUERY_LIST, SortProps, useSortQueryStore } from "@/src/contexts/reducers/sortQuery";
+import { useResponsive } from "@/src/hooks";
 
 
 
 export default function Sets() {
 
     const router = useRouter();
+    const isDesktop = useResponsive() === 'desktop'
     const handleSort = useSortQueryStore((state) => state.handleSortQuery)
     const sortQuery = useSortQueryStore((state) => state.sortQuery)
     const [categorySort, setCategorySort] = useState('')
@@ -32,18 +34,19 @@ export default function Sets() {
         <Page title={router.query.label as string || ""}>
             <div>
                 <div className="w-full gap-5 flex flex-col items-start sticky top-0 left-0 py-6 bg-background z-10">
-                    <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-4xl capitalize">
-                        {`"${router?.query?.label || '-'}"`}
+                    <h1 className="scroll-m-20 text-3xl flex items-end justify-between w-full font-extrabold tracking-tight lg:text-4xl capitalize">
+                        {`"${router?.query?.label || '-'}"`} 
+                        {!isDesktop && <span className="text-xs font-normal text-right">{`["${products ? products.length : 0}"]`}</span>}
                     </h1>
 
-                    <div className="flex items-center justify-between w-full ">
-                        <div className="flex items-center gap-2">
+                    <div className="grid md:grid-cols-2 grid-cols-1 w-full gap-1">
+                        <div className="flex items-center gap-1">
                             <Button size='sm' className="w-[50%] md:w-[150px]">
                                 Filter
                             </Button>
 
                             <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
+                                <DropdownMenuTrigger asChild className="w-[50%] md:w-fit">
                                     <Button loading={isLoading} size='sm' className=" uppercase flex items-center">
                                         sort by : {sortQuery.type || 'recommended'} <ChevronDown className="ml-1 w-4 h-4" />
                                     </Button>
@@ -61,7 +64,7 @@ export default function Sets() {
                                 </DropdownMenuContent>
                             </DropdownMenu>
                         </div>
-                        <span className="text-xs ">{`["${products ? products.length : 0}"]`}</span>
+                        {isDesktop && <span className="text-xs text-right">{`["${products ? products.length : 0}"]`}</span>}
                     </div>
                 </div>
 
