@@ -26,10 +26,10 @@ export default function Sets() {
     
 
 
-    const { data: products, error, isLoading } = useSWR(groq`*[_type == "product" ${categorySort}] | order(${sortQuery.query})`, query => client.fetch(query), { revalidateOnFocus: true });
+    const { data: products, error, isLoading } = useSWR(groq`*[_type == "product" ${categorySort}] ${sortQuery.query}`, query => client.fetch(query), { revalidateOnFocus: true });
 
     return (
-        <Page title="">
+        <Page title={router.query.label as string || ""}>
             <div>
                 <div className="w-full gap-5 flex flex-col items-start sticky top-0 left-0 py-6 bg-background z-10">
                     <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-4xl capitalize">

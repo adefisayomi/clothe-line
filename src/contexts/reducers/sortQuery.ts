@@ -17,10 +17,10 @@ const storage: StateStorage = {
 // Define types for sorting
 export const QUERY_LIST = {
   recommended: "",
-  newest: '_createdAt desc',
-  oldest: '_createdAt asc',
-  'highest price': 'price desc',
-  'lowest price': 'price asc',
+  newest: '| order(_createdAt desc)',
+  oldest: '| order(_createdAt asc)',
+  'highest price': '| order(price desc)',
+  'lowest price': '| order(price asc)',
 };
 export type SortProps = "recommended" | "newest" | "oldest" | "highest price" | "lowest price";
 
