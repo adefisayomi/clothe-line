@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useRef, useState } from "react";
 import { auth } from "../hooks/useAuth";
 import type {User} from 'firebase/auth'
 import { useCartStore } from "./reducers/useCartStore";
@@ -10,6 +10,7 @@ import useLocalStorage from "../hooks/useLocalstorage";
 
 type ContextProps = {
     user: User | null;
+    subscriptionRef?: any
 }
 
 export const StateContext = createContext({} as ContextProps)
@@ -17,6 +18,7 @@ export const StateContext = createContext({} as ContextProps)
 export default function GlobalStateProvider ({children}: {children: ReactNode}) {
 
     const [user, setUser] = useState<User | null>(auth.currentUser)
+    const subscriptionRef = useRef()
     auth.onAuthStateChanged( async (res) => {
 
         if (!res?.uid) useCartStore.setState({ cart: [] });
@@ -32,7 +34,7 @@ export default function GlobalStateProvider ({children}: {children: ReactNode}) 
     return (
         <StateContext.Provider
             value={{
-                user
+                user, subscriptionRef
             }}
         >
             {children}
