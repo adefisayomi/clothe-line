@@ -16,7 +16,7 @@ const storage: StateStorage = {
 
 // Define types for sorting
 export const QUERY_LIST = {
-  recommended: "",
+  recommended: "| order(_random)",
   newest: '| order(_createdAt desc)',
   oldest: '| order(_createdAt asc)',
   'highest price': '| order(price desc)',

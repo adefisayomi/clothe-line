@@ -2,14 +2,13 @@ import TextMaxLine from "@/src/components/TextMaxLine"
 import { Button } from "@/src/components/ui/button"
 import {Minus, Plus} from 'lucide-react'
 import {ReactNode, useState } from "react"
-import InfoSidebar from "@/src/components/InfoSidebar"
-import { Help, Payment, Shipping } from "./ProductHelp"
-import { ColorList, ProductInCartTypes, ProductTypes } from "@/sanity/schemaTypes/product"
+import { ProductInCartTypes, ProductTypes } from "@/sanity/schemaTypes/product"
 import CurrencyFormater from 'currency-formatter'
 import { urlForImage } from "@/sanity/lib/image"
 import useAlert from "@/src/hooks/useAlert"
 import { useCartStore } from "@/src/contexts/reducers/useCartStore"
 import { Textarea } from "@/src/components/ui/textarea"
+import { ColorPallete } from "./colorComponent"
 
 
 export default function ProductDetails ({product}: {product: ProductTypes}) {
@@ -43,50 +42,50 @@ export default function ProductDetails ({product}: {product: ProductTypes}) {
 
     return (
         <div className="flex flex-col items-start w-full gap-8">
-            <Dscription product={product} />
+            {/* <Dscription product={product} /> */}
             <ColorPallete colors={product.colors || []} color={color} setColor={setColor} />
-            <SizesComponent sizes={product.sizes || []} size={size} setSize={setSize} />
+            {/* <SizesComponent sizes={product.sizes || []} size={size} setSize={setSize} />
 
             <AddNote note={note} setNote={setNote} />
-            <AddToCart quantity={quantity} setQuantity={setQuantity} handleAddToCart={handleAddToCart} loading={loading}/>
+            <AddToCart quantity={quantity} setQuantity={setQuantity} handleAddToCart={handleAddToCart} loading={loading}/> */}
 
-            <MoreInfo />
+            {/* <MoreInfo /> */}
         </div>
     )
 }
 
 
-function MoreInfo () {
-    const [open, setOpen] = useState(false)
-    const [info, setInfo] = useState<{header: string, content: any}>({header: '', content: null})
-    const handleShowInfo =(header: string, content: ReactNode) => {
-        setOpen(true)
-        setInfo({header, content})
-    }
+// function MoreInfo () {
+//     const [open, setOpen] = useState(false)
+//     const [info, setInfo] = useState<{header: string, content: any}>({header: '', content: null})
+//     const handleShowInfo =(header: string, content: ReactNode) => {
+//         setOpen(true)
+//         setInfo({header, content})
+//     }
 
-    const infoList= [
-        {header: 'SHIPPING & RETURNS', component: <Shipping />},
-        {header: 'PAYMENT METHODS', component: <Payment />},
-        {header: 'HELP AND CONTACT', component: <Help />},
-    ]
+//     const infoList= [
+//         {header: 'SHIPPING & RETURNS', component: <Shipping />},
+//         {header: 'PAYMENT METHODS', component: <Payment />},
+//         {header: 'HELP AND CONTACT', component: <Help />},
+//     ]
 
-    return (
-       <div>
-         <ul className="flex flex-col items-start gap-1 ">
-            {
-                infoList.map((_, index) => (
-                    <li key={index} className="hover:underline text-xs cursor-pointer"
-                        onClick={() => handleShowInfo(_.header, _.component)}
-                    >
-                        {_.header}
-                    </li>
-                ))
-            }
-        </ul>
-            <InfoSidebar isOpen={open} onClose={() => setOpen(false)} header={info.header} content={info.content} />
-       </div>
-    )
-}
+//     return (
+//        <div>
+//          <ul className="flex flex-col items-start gap-1 ">
+//             {
+//                 infoList.map((_, index) => (
+//                     <li key={index} className="hover:underline text-xs cursor-pointer"
+//                         onClick={() => handleShowInfo(_.header, _.component)}
+//                     >
+//                         {_.header}
+//                     </li>
+//                 ))
+//             }
+//         </ul>
+//             <InfoSidebar isOpen={open} onClose={() => setOpen(false)} header={info.header} content={info.content} />
+//        </div>
+//     )
+// }
 
 export function AddToCart ({quantity, setQuantity, handleAddToCart, loading}: {quantity: number, setQuantity: any, handleAddToCart: any, loading: boolean}) {
 
@@ -136,51 +135,7 @@ function Dscription ({product}: {product: ProductTypes}) {
     )
 }
 
-function ColorPallete ({color, colors, setColor}: {colors: string [], color: string, setColor: any}) {
 
-    const handleSetColor = (e: any) => setColor(e.target.value)
-
-    return (
-          <div>
-            
-            <h3 className="mb-1 text-xs font-bold uppercase ">colors:</h3>
-
-            <div className="flex items-center gap-2">
-                {
-                    colors && colors.length > 0 && colors.map((col, index) => (
-                        <ColorComponent 
-                            key={index} 
-                            color={col}
-                            handleSetColor={handleSetColor}
-                        />
-                    ))
-                }
-            </div>
-
-            {color && <p className="text-[0.6rem] font-light capitalize">{color} color selected</p>}
-          </div>
-    )
-}
-
-
-function ColorComponent ({color, handleSetColor}: {color: string, handleSetColor: any}) {
-
-    const colorHex = ColorList.find((col) => col.title === color.toLowerCase())?.value
-    const bgColor = `bg-[${colorHex}]`.toLowerCase()
-
-    return (
-      <div>
-        <input 
-            type="radio" 
-            name='color-pallete' 
-            className={`appearance-none w-8 rounded-none h-8 relative outline-none ${bgColor}  cursor-pointer  checked:border-4 before:content-[''] before:block before:w-8 before:h-8 before:rounded-md 
-            checked:before:absolute checked:before:top-1/2 checked:before:left-1/2 checked:before:-translate-x-1/2 checked:before:-translate-y-1/2 checked:before:w-[85%] checked:before:h-[85%] checked:rounded-full`} 
-            onChange={handleSetColor}
-            value={color}
-        />
-      </div>
-    )
-}
 
 function SizesComponent({ sizes, size, setSize }: { sizes: string[]; size: string; setSize: any }) {
     const handleSetSize = (e: any) => setSize(e.target.value);
