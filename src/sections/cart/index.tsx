@@ -58,7 +58,7 @@ export default function Cart() {
         </div>
 
         <SheetFooter>
-          <Link href="/checkout/item-1" className="w-full ">
+          <Link href="/checkout" className="w-full ">
             <Button className="w-full capitalize">
               Continue to Checkout
             </Button>

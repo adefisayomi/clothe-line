@@ -19,10 +19,10 @@ export default function Checkout () {
 
 
     return (
-        <div className=" w-full bg-[#E2DBC8] min-h-screen backdrop-blur-3xl relative">
+        <div className=" w-full bg-[#c5bea9] min-h-screen backdrop-blur-3xl relative">
             <Page title="">
                 <div className="flex flex-col w-full">
-                    <div className="mb-10 sticky top-0 py-4 w-full bg-[#E2DBC8] left-0"><Logo/></div>
+                    <div className="mb-10 sticky top-0 py-4 w-full  left-0"><Logo/></div>
                     
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
                         <div className="">
@@ -35,8 +35,7 @@ export default function Checkout () {
                             </ol>
                         </div>
 
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
-                            <div />
+                        <div className="md:w-[80%] w-full float-end gap-2">
                             <div className="flex flex-col gap-4">
                                 <CheckoutSummary2 />
                                 <ShippingDetails />

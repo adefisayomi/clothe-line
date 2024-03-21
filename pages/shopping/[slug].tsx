@@ -55,16 +55,7 @@ export default function SingleProduct({ product }: { product: ProductTypes }) {
 SingleProduct.getLayout = (page: ReactNode) => <Layout>{page}</Layout>;
 
 export async function getServerSideProps(ctx: any) {
-  const productQuery = `*[_type == "product" && slug.current == "${ctx.params.slug}"][0] {
-    _id,
-    name,
-    description,
-    price,
-    colors,
-    sizes,
-    slug,
-    images
-  }`;
+  const productQuery = `*[_type == "product" && slug.current == "${ctx.params.slug}"][0]`;
 
   const product: ProductTypes = await client.fetch(productQuery, { slug: ctx.params.slug });
   if (!product) {
