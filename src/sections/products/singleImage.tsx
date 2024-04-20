@@ -1,4 +1,5 @@
 import { Button } from "@/src/components/ui/button";
+import Link from "next/link";
 
 
 
@@ -18,9 +19,11 @@ export function SingleImage () {
         <h1 className="scroll-m-20 text-lg font-extrabold tracking-tight uppercase">
             {"X-cape T-shirts"}
         </h1>
-        <Button variant='outline' size='sm' className="w-1/2 md:w-fit ">
-            Discover more
-        </Button>
+        <Link href='/sets/new-in'>
+            <Button variant='outline' size='sm' className="w-1/2 md:w-fit ">
+                Discover more
+            </Button>
+        </Link>
         </div>
     )
 }
