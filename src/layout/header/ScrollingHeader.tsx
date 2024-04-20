@@ -15,7 +15,7 @@ export default function HeaderScrollingText () {
     }
 
     return (
-        <div className="bg-background overflow-hidden border-b border-muted p-2 sticky top-0 z-10" id="header-scroll-text-container">
+        <div className="bg-background overflow-hidden border-b border-muted p-2 sticky top-0 z-50" id="header-scroll-text-container">
             <p id="header-scroll-text" className="cursor-default text-xs font-mono bg-background">
                 Subscribe to our newsletter and be the first know when we release a new product - 
                 <Button size='sm' className="p-1 px-3 h-fit rounded-full" onClick={scrollToBottom}>subscribe</Button>
