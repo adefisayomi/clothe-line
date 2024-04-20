@@ -5,13 +5,14 @@ import { ReactNode } from "react";
 import { client } from '@/sanity/lib/client';
 import { ProductTypes } from "@/sanity/schemaTypes/product";
 import CarouselProducts from "@/src/sections/products/CarouselProducts";
+import { QUERY_LIST } from "@/src/contexts/reducers/sortQuery";
 
 
 
 export async function getServerSideProps(): Promise<{ props: {products: ProductTypes[]} }> {
 
   try {
-    const products = await client.fetch<ProductTypes[]>(`*[_type == "product"] | order(_random)`);
+    const products = await client.fetch<ProductTypes[]>(`*[_type == "product"] ${QUERY_LIST.newest}[0..1]`);
 
     return {
       props: {
@@ -28,8 +29,6 @@ export async function getServerSideProps(): Promise<{ props: {products: ProductT
 }
 
 export default function Home({ products }: {products: ProductTypes[]}) {
-
-  console.log(products[0])
 
   return (
     <Page title="Official ">
