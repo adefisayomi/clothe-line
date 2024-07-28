@@ -10,7 +10,10 @@ export default function Logo () {
     return (
         <Link href='/'>
         <div className="w-fit cursor-pointer">
-            {
+            <h1 className="scroll-m-20 text-2xl md:text-4xl font-extrabold tracking-tight font-poppins">
+                clace™
+            </h1>
+            {/* {
                 isDesktop ? 
                 <h1 className="scroll-m-20 text-2xl md:text-4xl font-extrabold tracking-tight font-poppins">
                     Adefisayomi™<span className="text-lg">/clace</span>
@@ -18,7 +21,7 @@ export default function Logo () {
                 <h1 className="scroll-m-20 text-2xl md:text-4xl font-extrabold tracking-tight font-poppins">
                     clace™
                 </h1>
-            }
+            } */}
         </div>
         </Link>
     )

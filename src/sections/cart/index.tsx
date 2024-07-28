@@ -26,7 +26,7 @@ export default function Cart() {
         <button className="relative inline-flex">
           <ShoppingCart className="w-5 h-5" />
           {
-            cartItems.length > 0 && <div className="absolute inline-flex items-center justify-center w-5 h-5 text-[0.65rem] font-bold bg-secondary rounded-full -top-4 -end-3">
+            cartItems && cartItems.length > 0 && <div className="absolute inline-flex items-center justify-center w-5 h-5 text-[0.65rem] font-bold bg-secondary rounded-full -top-4 -end-3">
             {cartItems.length}
           </div>
           }
@@ -41,7 +41,7 @@ export default function Cart() {
 
         <div className="flex-1">
           {
-            cartItems?.length > 0 ? 
+            cartItems && cartItems?.length > 0 ? 
               <CartItems cartItems={cartItems} /> : 
               <div className="w-full h-full flex items-center justify-center flex-col">
                 <Image
